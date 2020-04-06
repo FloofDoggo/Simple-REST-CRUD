@@ -23,9 +23,6 @@ public class UserService {
     public void deleteUserById(Integer id){
         if(userDAO.existsById(id)){
             userDAO.deleteById(id);
-        }else{
-            System.out.println(java.time.LocalDateTime.now()
-                    + " --- [DELETE] User at id " + id + " does not exist.");
         }
     }
 
@@ -36,10 +33,6 @@ public class UserService {
     public void editUser(User user){
         if(userDAO.existsById(user.getId())) {
             userDAO.save(user);
-        }else{
-            System.out.println(java.time.LocalDateTime.now()
-                    + " --- [EDIT] User at id " + user.getId()
-                    + " does not exist.");
         }
     }
 }

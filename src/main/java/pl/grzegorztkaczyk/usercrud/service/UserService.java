@@ -30,8 +30,9 @@ public class UserService {
         return userDAO.findById(id);
     }
 
-    public void editUser(User user){
+    public void editUser(Integer id, User user){
         if(userDAO.existsById(user.getId())) {
+            user.setId(id);
             userDAO.save(user);
         }
     }

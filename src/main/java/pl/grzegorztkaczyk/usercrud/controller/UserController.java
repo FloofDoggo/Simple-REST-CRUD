@@ -7,13 +7,13 @@ import pl.grzegorztkaczyk.usercrud.service.UserService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/v1/crud")
+@RequestMapping("/v1/api/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/all")
+    @GetMapping
     public Iterable<User> showAllUsers(){
         return userService.showAllUsers();
     }
@@ -23,18 +23,18 @@ public class UserController {
         userService.addUser(user);
     }
 
-    @DeleteMapping
-    public void deleteUserById(@RequestParam Integer id){
+    @DeleteMapping("/{id}")
+    public void deleteUserById(@PathVariable Integer id){
         userService.deleteUserById(id);
     }
 
-    @GetMapping
-    public Optional<User> findUserById(@RequestParam Integer id){
+    @GetMapping("/{id}")
+    public Optional<User> findUserById(@PathVariable Integer id){
         return userService.findUserById(id);
     }
 
-    @PutMapping
-    public void editUser(@RequestBody User user){
-        userService.editUser(user);
+    @PutMapping("/{id}")
+    public void editUser(@PathVariable Integer id, @RequestBody User user){
+        userService.editUser(id, user);
     }
 }
